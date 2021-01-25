@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    {% block title %}
+    <title>title</title>
+    {% endblock %}
+
+    {% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{% static 'js/board.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+    <div class="board">
+        <h2 class="center">게시판</h2>
+        <button data-url="{% url 'boards:posting_create' %}">등록</button>
+        <button class="posting-delete">삭제</button>
+        <div class="board-title">
+            <div class="board-ob">No</div>
+            <div class="board-ob">제목</div>
+            <div class="board-ob">작성자</div>
+            <div class="board-ob">작성일</div>
+        </div>
+        {% for posting in postings %}
+        <form>
+        <div class="board-title">
+            <div>
+                <input type="checkbox" name="checked" {% if posting.checked %}checked{% endif %}>
+            </div>
+            <div class="board-ob">
+                <input readonly type="text" name="posting_id" value="{{ posting.pk }}">
+            </div>
+            <div class="board-ob posting-title">
+<!--                <input readonly type="text" name="title" value="{{ posting.title }}">-->
+                <a href="{% url 'boards:posting_detail' posting.pk %}">{{ posting.title }}</a>
+            </div>
+            <div class="board-ob">
+                <input readonly type="text" name="writer" value="{{ posting.writer.name }}">
+                <input type="hidden" name="writer_id" value="{{ posting.writer.pk }}">
+            </div>
+            <div class="board-ob">
+                <input readonly type="text" name="created_datetime" value="{{ posting.created_datetime }}">
+            </div>
+        </div>
+        </form>
+        {% endfor %}
+        <div class="center">Page</div>
+    </div>
+</body>
+</html>
