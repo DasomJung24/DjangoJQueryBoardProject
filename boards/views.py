@@ -49,12 +49,6 @@ class PostingCreateView(FormView):
     http_method_names = ['post']
     form_class = PostingForm
 
-    def post(self, request, *args, **kwargs):
-        print(11111)
-        data = request.POST
-        if data is None:
-            return render(request, 'boards/posting_create.html')
-
     def form_valid(self, form):
         posting = form.save()
         return JsonResponse({'writer': posting.writer, 'id': posting.id, 'content': posting.content,
@@ -84,5 +78,4 @@ class PostingCreateWriteView(View):
     http_method_names = ['get']
 
     def get(self, request, *args, **kwargs):
-        print(11111)
         return render(request, 'boards/posting_create.html')
