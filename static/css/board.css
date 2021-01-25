@@ -1,3 +1,23 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid grey;
+}
+a {
+  color: black;
+  text-decoration-line: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+input[readonly] {
+  border: none;
+  /* text-align: center; */
+}
+/* 
 div.board-title {
     display: flex;
     justify-content: space-around;
@@ -31,4 +51,4 @@ a:hover {
     width: 850px;
     padding-left: 110px;
     padding-top: 50px;
-}
+} */

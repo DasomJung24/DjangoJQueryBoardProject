@@ -22,7 +22,13 @@
                 <p>작성자 : <input readonly type="text" name="writer" value="{{ posting.writer.name }}"></p>
                 <p>작성일 : <input readonly type="text" name="created_datetime" value="{{ posting.created_datetime }}"></p>
             </div>
-            <div class="posting-content">{{ posting.content }}</div>
+            
+            <div class="posting-content"><textarea>{{ posting.content }}</textarea></div>
+            <div class="btn-group">
+                <button>수정</button>
+                <button>삭제</button>
+                <button>확인</button>
+            </div>
         </div>
     </div>
 </body>

@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView, DeleteView
+from django.views import View
 from django.http import JsonResponse
 
 from .models import Posting
@@ -76,3 +77,12 @@ class PostingDeleteView(DeleteView):
         print(11111)
         posting.delete()
         return JsonResponse({'msg': 'success'}, status=200)
+
+
+class PostingCreateWriteView(View):
+    model = Posting
+    http_method_names = ['get']
+
+    def get(self, request, *args, **kwargs):
+        print(11111)
+        return render(request, 'boards/posting_create.html')
